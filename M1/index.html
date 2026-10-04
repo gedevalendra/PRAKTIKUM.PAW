@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TokSir - Mini POS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>TokSir</h1>
+        </header>
+
+        <main class="pos-grid">
+            <!-- Input Section -->
+            <section class="input-section">
+                <!-- Preset Items Card -->
+                <div class="card" style="margin-bottom: 20px;">
+                    <h2>Pilih Cepat Barang</h2>
+                    <div class="preset-items">
+                        <button type="button" class="preset-btn" data-name="Air Mineral" data-price="3000">
+                            <span class="preset-name">Air Mineral</span>
+                            <span class="preset-price">Rp 3.000</span>
+                        </button>
+                        <button type="button" class="preset-btn" data-name="Buku Tulis" data-price="5000">
+                            <span class="preset-name">Buku Tulis</span>
+                            <span class="preset-price">Rp 5.000</span>
+                        </button>
+                        <button type="button" class="preset-btn" data-name="Pulpen" data-price="3000">
+                            <span class="preset-name">Pulpen</span>
+                            <span class="preset-price">Rp 3.000</span>
+                        </button>
+                        <button type="button" class="preset-btn" data-name="Nasi Goreng" data-price="15000">
+                            <span class="preset-name">Nasi Goreng</span>
+                            <span class="preset-price">Rp 15.000</span>
+                        </button>
+                        <button type="button" class="preset-btn" data-name="Mie Ayam" data-price="12000">
+                            <span class="preset-name">Mie Ayam</span>
+                            <span class="preset-price">Rp 12.000</span>
+                        </button>
+                        <button type="button" class="preset-btn" data-name="Es Teh Manis" data-price="4000">
+                            <span class="preset-name">Es Teh Manis</span>
+                            <span class="preset-price">Rp 4.000</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h2>Input Barang</h2>
+                    <form id="item-form">
+                        <div class="form-group">
+                            <label for="item-name">Nama Barang</label>
+                            <input type="text" id="item-name" placeholder="Contoh: Buku Tulis" autocomplete="off">
+                            <span id="error-name" class="error-msg">Nama barang minimal 3 karakter.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="item-price">Harga Satuan (Rp)</label>
+                            <input type="number" id="item-price" placeholder="Minimal 500" min="500">
+                            <span id="error-price" class="error-msg">Harga minimal Rp 500.</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="item-qty">Jumlah / Qty</label>
+                            <input type="number" id="item-qty" placeholder="Minimal 1" min="1" value="1">
+                            <span id="error-qty" class="error-msg">Jumlah minimal 1.</span>
+                        </div>
+                        <button type="submit" class="btn">Tambah ke Keranjang</button>
+                    </form>
+                </div>
+
+                <div class="card" style="margin-top: 20px;">
+                    <h2>Kode Promo</h2>
+                    <div class="promo-section">
+                        <input type="text" id="promo-code" placeholder="Contoh: HEMAT10" autocomplete="off">
+                        <button id="apply-promo" class="btn btn-outline">Pakai</button>
+                    </div>
+                    <p id="promo-status" style="font-size: 0.8rem; margin-top: 5px;"></p>
+                </div>
+            </section>
+
+            <!-- Cart Section -->
+            <section class="cart-section">
+                <div class="card">
+                    <h2>Keranjang Belanja</h2>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Barang</th>
+                                    <th>Harga</th>
+                                    <th>Qty</th>
+                                    <th>Subtotal</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="cart-items">
+                                <!-- Items will be injected here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="summary">
+                        <div class="summary-row">
+                            <span>Subtotal Belanja</span>
+                            <span id="display-subtotal">Rp 0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Diskon</span>
+                            <span id="display-discount">Rp 0</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total Akhir</span>
+                            <span id="display-total">Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-section">
+                        <div class="form-group">
+                            <label for="payment-amount">Uang Bayar (Rp)</label>
+                            <input type="number" id="payment-amount" placeholder="Masukkan nominal uang">
+                        </div>
+                        <div class="change-display">
+                            Kembalian: <span id="display-change">Rp 0</span>
+                        </div>
+                        <p id="insufficient-msg" class="insufficient-funds">Uang belum mencukupi!</p>
+                    </div>
+
+                    <div style="margin-top: 20px; display: flex; gap: 10px;">
+                        <button id="reset-btn" class="btn btn-outline">Transaksi Baru</button>
+                        <button id="checkout-btn" class="btn">Selesaikan Transaksi</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Custom Modal Popup -->
+    <div id="custom-modal" class="modal-overlay">
+        <div class="modal-card">
+            <div id="modal-icon" class="modal-icon">✓</div>
+            <h3 id="modal-title">Judul Notifikasi</h3>
+            <div id="modal-body" class="modal-body">Pesan notifikasi</div>
+            <div id="modal-actions" class="modal-actions">
+                <button id="modal-btn-cancel" class="btn btn-outline">Batal</button>
+                <button id="modal-btn-confirm" class="btn">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
