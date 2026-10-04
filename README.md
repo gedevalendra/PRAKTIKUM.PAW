@@ -1,6 +1,6 @@
 ﻿<div align="center">
   <!-- Animasi Ombak Header -->
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D47A1,100:81D4FA&height=200&section=header&text=Pengembangan%20Aplikasi%20Mobile&fontSize=40&fontColor=ffffff&fontAlignY=38&desc=IF25-22017%20%7C%20Institut%20Teknologi%20Sumatera&descAlignY=55&descAlign=50&animation=twinkling" width="100%" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D47A1,100:81D4FA&height=200&section=header&text=Pengembangan%20Aplikasi%20Web&fontSize=40&fontColor=ffffff&fontAlignY=38&desc=IF25-22017%20%7C%20Institut%20Teknologi%20Sumatera&descAlignY=55&descAlign=50&animation=twinkling" width="100%" />
 
   <br/>
   
