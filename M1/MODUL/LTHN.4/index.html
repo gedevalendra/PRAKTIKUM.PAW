@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul 1 - Latihan 4</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Modul 1 - Latihan 4</h1>
+            <button id="theme-toggle" class="btn btn-secondary">🌓 Mode Gelap</button>
+        </header>
+
+        <!-- FITUR 1 & 2: Form Mahasiswa + Validasi + LocalStorage -->
+        <section class="card">
+            <h2>1 & 2. Data Mahasiswa (Form Validasi + LocalStorage)</h2>
+            <form id="mhs-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mhs-nim">NIM</label>
+                        <input type="text" id="mhs-nim" placeholder="Contoh: 21001" required>
+                        <span id="err-nim" class="error-msg">NIM wajib diisi (minimal 4 digit/karakter).</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="mhs-nama">Nama Lengkap</label>
+                        <input type="text" id="mhs-nama" placeholder="Contoh: Budi Santoso" required>
+                        <span id="err-nama" class="error-msg">Nama wajib diisi (minimal 3 karakter).</span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="mhs-jurusan">Jurusan</label>
+                        <select id="mhs-jurusan" required>
+                            <option value="">-- Pilih Jurusan --</option>
+                            <option value="Informatika">Informatika</option>
+                            <option value="Sistem Informasi">Sistem Informasi</option>
+                            <option value="Teknik Komputer">Teknik Komputer</option>
+                        </select>
+                        <span id="err-jurusan" class="error-msg">Pilih salah satu jurusan.</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="mhs-nilai">Nilai (0 - 100)</label>
+                        <input type="number" id="mhs-nilai" min="0" max="100" placeholder="0 - 100" required>
+                        <span id="err-nilai" class="error-msg">Nilai harus angka antara 0 dan 100.</span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Simpan Mahasiswa</button>
+            </form>
+
+            <div class="table-container" style="margin-top: 20px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                            <th>Jurusan</th>
+                            <th>Nilai</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="mhs-table-body">
+                        <!-- Data mahasiswa dari localStorage -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- FITUR 3 & 5: Daftar Post dari API + Search Filter + Pagination -->
+        <section class="card">
+            <h2>3 & 5. Daftar Post API (Search/Filter & Pagination)</h2>
+            <div class="filter-controls">
+                <input type="text" id="post-search" placeholder="Cari postingan berdasarkan judul...">
+            </div>
+
+            <div id="posts-loading" class="status-msg">Memuat data post dari API...</div>
+            <div id="posts-container" class="posts-grid"></div>
+
+            <div class="pagination-controls">
+                <button id="btn-prev" class="btn btn-outline" disabled>&laquo; Previous</button>
+                <span id="page-info">Halaman 1</span>
+                <button id="btn-next" class="btn btn-outline">Next &raquo;</button>
+            </div>
+        </section>
+
+        <!-- FITUR 6: Todo List Sederhana -->
+        <section class="card">
+            <h2>6. Aplikasi Todo List (LocalStorage)</h2>
+            <form id="todo-form">
+                <div class="form-row">
+                    <input type="text" id="todo-input" placeholder="Tulis aktivitas baru..." required>
+                    <button type="submit" class="btn btn-primary" style="white-space: nowrap;">Tambah Todo</button>
+                </div>
+            </form>
+            <ul id="todo-list" class="todo-list">
+                <!-- Todo list items -->
+            </ul>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
